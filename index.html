@@ -1,236 +1,842 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mayur Sutreja — Portfolio</title>
-  <meta name="description" content="Portfolio of Mayur Sutreja — Laravel & PHP Developer" />
-  <meta property="og:title" content="Mayur Sutreja — Portfolio" />
-  <meta property="og:description" content="Laravel & PHP Developer. Selected work, skills, and contact." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://msutreja.github.io/" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🛠️</text></svg>">
-  <style>
-    :root {
-      --bg: #0b0d10;
-      --card: #111418;
-      --text: #e6edf3;
-      --muted: #9da7b1;
-      --accent: #7c5cff;
-      --accent-2: #2dd4bf;
-      --border: #1b2026;
-    }
-    :root.light {
-      --bg: #f7fafc;
-      --card: #fff;
-      --text: #0f1720;
-      --muted: #46505a;
-      --accent: #6c5ce7;
-      --accent-2: #06b6d4;
-      --border: #e6e9ee;
-    }
-    * { box-sizing: border-box }
-    body {
-      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: linear-gradient(180deg, var(--bg), #0a0c10 60%);
-      color: var(--text);
-    }
-    a { color: inherit; text-decoration: none }
-    .container { width: min(1100px, 92%); margin: 0 auto }
-    header {
-      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px);
-      background: color-mix(in srgb, var(--bg) 86%, transparent);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav { display:flex; align-items:center; justify-content:space-between; padding: 14px 0 }
-    .brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.3px }
-    .dot { width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent-2)) }
-    .nav a { padding: 8px 12px; border-radius: 12px; opacity:.9 }
-    .nav a:hover { background: var(--border) }
-    .btn { display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:14px; border:1px solid var(--border); background:linear-gradient(180deg,var(--card),#0e1217); color:var(--text); cursor:pointer }
-    .btn:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--border)) }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mayur Sutreja — Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Mayur Sutreja — Laravel & PHP Developer"
+    />
+    <meta property="og:title" content="Mayur Sutreja — Portfolio" />
+    <meta
+      property="og:description"
+      content="Laravel & PHP Developer. Selected work, skills, and contact."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://msutreja.github.io/" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🛠️</text></svg>"
+    />
+    <style>
+      :root {
+        --bg: #0b0d10;
+        --card: #111418;
+        --text: #e6edf3;
+        --muted: #9da7b1;
+        --accent: #7c5cff;
+        --accent-2: #2dd4bf;
+        --border: #1b2026;
+      }
+      :root.light {
+        --bg: #f7fafc;
+        --card: #fff;
+        --text: #0f1720;
+        --muted: #46505a;
+        --accent: #6c5ce7;
+        --accent-2: #06b6d4;
+        --border: #e6e9ee;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: linear-gradient(180deg, var(--bg), #0a0c10 60%);
+        color: var(--text);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .container {
+        width: min(1100px, 92%);
+        margin: 0 auto;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(8px);
+        background: color-mix(in srgb, var(--bg) 86%, transparent);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between;
+        padding: 14px 0;
+        position: relative;
+      }
 
-    .hero { padding: 72px 0 36px }
-    .hero-grid { display:grid; grid-template-columns: 1.2fr .8fr; gap:32px; align-items:center }
-    .title { font-size: clamp(28px, 4.2vw, 56px); line-height:1.06; margin:0 0 10px; letter-spacing:.3px }
-    .subtitle { color: var(--muted); font-size: clamp(14px, 1.6vw, 18px); margin: 0 0 20px }
-    .badge { display:inline-block; padding:6px 10px; border:1px solid var(--border); background:var(--card); border-radius:999px; font-size:12px; color:var(--muted) }
-    .hero-cta { display:flex; gap:12px; flex-wrap:wrap; margin-top: 20px }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
 
-    .avatar {
-      width:min(240px, 80%); aspect-ratio:1/1; border-radius:26px; border:1px solid var(--border); background:
-        radial-gradient(60% 60% at 70% 30%, rgba(124,92,255,.25), transparent 60%),
-        radial-gradient(50% 50% at 30% 70%, rgba(45,212,191,.2), transparent 60%),
-        var(--card);
-      display:flex; align-items:center; justify-content:center; font-size:56px; font-weight:800; letter-spacing:2px; color:var(--muted)
-    }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      }
 
-    section { padding: 56px 0; border-top: 1px solid var(--border) }
-    h2 { font-size: 24px; margin: 0 0 18px }
-    p { color: var(--muted); line-height:1.7; margin: 10px 0 }
+      .nav a {
+        padding: 8px 12px;
+        border-radius: 12px;
+        opacity: 1;
+        display: inline-block;
+        transition: 0.3s ease;
+      }
 
-    .chips { display:flex; flex-wrap:wrap; gap:10px }
-    .chip { padding:8px 12px; border-radius:999px; background:var(--card); border:1px solid var(--border); font-size:13px }
+      .nav a:hover {
+        background: var(--border);
+        box-shadow: 0 0 10px rgba(0, 128, 255, 0.5);
+        border: 1px solid rgba(0, 128, 255, 0.3);
+      }
 
-    .grid { display:grid; gap:16px }
-    .grid.projects { grid-template-columns: repeat(12, 1fr) }
-    .card { border:1px solid var(--border); background:linear-gradient(180deg, var(--card), #0f1318); border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:10px }
-    .card h3 { margin:0; font-size:18px }
-    .card p { margin:0 }
-    .card .meta { display:flex; gap:10px; flex-wrap:wrap }
-    .card a.btn { font-size:14px; padding:8px 12px }
+      /* Menu toggle hidden on desktop */
+      .menu-toggle {
+        display: none;
+        font-size: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text, #fff);
+      }
 
-    .footer { padding: 28px 0; text-align:center; color:var(--muted); border-top:1px solid var(--border) }
+      /* ✅ Default desktop nav (visible) */
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
 
-    /* Responsive */
-    @media (max-width: 860px) {
-      .hero-grid { grid-template-columns: 1fr; text-align:center }
-      .hero-cta { justify-content:center }
-      .avatar { margin: 0 auto }
-    }
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-    /* Utilities */
-    .muted { color: var(--muted) }
-    .accent { color: var(--accent) }
-    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; padding:2px 6px; border:1px solid var(--border); border-bottom-width:2px; border-radius:6px; background:var(--card) }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container nav">
-      <div class="brand"><span class="dot"></span> <a href="#top">Mayur Sutreja</a></div>
-      <nav aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <button id="themeToggle" class="btn" type="button" aria-label="Toggle theme">🌗 Theme</button>
-      </nav>
-    </div>
-  </header>
+      .btn {
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, var(--card), #0e1217);
+        color: var(--text);
+        cursor: pointer;
+        text-align: center;
+        transition: transform 0.4s;
+      }
+      .btn:hover {
+        transform: scale(1.05) translateY(-6px);
+        box-shadow: 0 0 25px rgba(0, 150, 255, 0.35),
+          0 10px 25px rgba(0, 0, 0, 0.2);
+        border-color: rgba(0, 160, 255, 0.8);
+        background: linear-gradient(
+          180deg,
+          rgba(15, 20, 30, 1),
+          rgba(0, 100, 255, 0.1)
+        );
+        cursor: pointer;
+        animation: sparkle 1.8s ease-in-out infinite alternate;
+      }
 
-  <main id="top" class="container">
-    <section class="hero" aria-labelledby="intro">
-      <div class="hero-grid">
-        <div>
-          <span class="badge">Laravel & PHP Developer</span>
-          <h1 id="intro" class="title">I build clean, reliable, and fast web apps.</h1>
-          <p class="subtitle">I’m <strong>Mayur Sutreja</strong>, a Laravel developer focused on building real-world products with solid engineering. Below you’ll find a snapshot of my work and skills.
-          </p>
-          <div class="hero-cta">
-            <a class="btn" href="https://github.com/Msutreja" target="_blank" rel="noopener">💻 GitHub</a>
-            <a class="btn" href="#projects">🚀 View Projects</a>
-            <a class="btn" href="#contact">✉️ Contact</a>
+      .hero {
+        padding: 72px 0 36px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 32px;
+        align-items: center;
+      }
+      .title {
+        font-size: clamp(28px, 4.2vw, 56px);
+        line-height: 1.06;
+        margin: 0 0 10px;
+        letter-spacing: 0.3px;
+      }
+      .subtitle {
+        color: var(--muted);
+        font-size: clamp(14px, 1.6vw, 18px);
+        margin: 20px 0px 40px 0px;
+      }
+      .badge {
+        display: inline-block;
+        padding: 6px 10px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: 999px;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 20px;
+      }
+      .hero-cta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+      .hero .avatar .port_img {
+        width: 100%;
+        border-radius: 14px;
+      }
+      #typewriter {
+        border-right: 2px solid #ff4b2b;
+        animation: blink 0.7s infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+
+      section {
+        padding: 56px 0;
+        border-top: 1px solid var(--border);
+      }
+      h2 {
+        font-size: 24px;
+        margin: 0 0 18px;
+      }
+      p {
+        color: var(--muted);
+        line-height: 1.7;
+        margin: 10px 0;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .chip {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        font-size: 13px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+      .grid.projects {
+        grid-template-columns: repeat(12, 1fr);
+      }
+      .card {
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, var(--card), #0f1318);
+        border-radius: 18px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+          box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+        will-change: transform, box-shadow, border-color;
+      }
+      .card h3 {
+        margin: 0;
+        font-size: 18px;
+      }
+      .card p {
+        margin: 0;
+      }
+      .card .meta {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .card a.btn {
+        font-size: 14px;
+        padding: 8px 12px;
+      }
+      .card:hover {
+        transform: scale(1.05) translateY(-6px);
+        box-shadow: 0 0 25px rgba(0, 150, 255, 0.35),
+          0 10px 25px rgba(0, 0, 0, 0.2);
+        border-color: rgba(0, 160, 255, 0.8);
+        background: linear-gradient(
+          180deg,
+          rgba(15, 20, 30, 1),
+          rgba(0, 100, 255, 0.1)
+        );
+        cursor: pointer;
+        animation: sparkle 1.8s ease-in-out infinite alternate;
+      }
+
+      .footer {
+        padding: 28px 0;
+        text-align: center;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+      }
+      .footer strong {
+        color: #ff4b2b;
+      }
+
+      .footer a {
+        color: #ff4b2b;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+      .footer .footer_top {
+        margin-bottom: 10px;
+      }
+
+      /* Utilities */
+      .muted {
+        color: var(--muted);
+      }
+      .accent {
+        color: var(--accent);
+      }
+      .kbd {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 12px;
+        padding: 2px 6px;
+        border: 1px solid var(--border);
+        border-bottom-width: 2px;
+        border-radius: 6px;
+        background: var(--card);
+      }
+
+      /* Contact Section */
+      .contact-section {
+        padding: 80px 40px;
+        background: linear-gradient(180deg, var(--card), #0f1318);
+        border-radius: 20px;
+        box-shadow: 0 0 25px rgba(0, 150, 255, 0.1);
+        margin: 60px 0;
+      }
+
+      .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+
+      .contact-info h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .contact-info p {
+        margin: 8px 0;
+      }
+
+      .contact-info .accent {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .contact-info .accent:hover {
+        color: var(--accent-2);
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .contact-info .phone_icon {
+        display: flex;
+        align-items: center;
+      }
+      .contact-info .phone_icon img {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: #0c0f13;
+        color: var(--text, #fff);
+        font-size: 15px;
+        outline: none;
+        transition: border 0.3s, box-shadow 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 8px rgba(0, 150, 255, 0.4);
+      }
+
+      /* ✨ Blue sparkling animation effect */
+      @keyframes sparkle {
+        0% {
+          box-shadow: 0 0 15px rgba(0, 150, 255, 0.3),
+            0 0 30px rgba(0, 150, 255, 0.15);
+        }
+        50% {
+          box-shadow: 0 0 25px rgba(0, 180, 255, 0.5),
+            0 0 45px rgba(0, 150, 255, 0.25);
+        }
+        100% {
+          box-shadow: 0 0 15px rgba(0, 150, 255, 0.3),
+            0 0 30px rgba(0, 150, 255, 0.15);
+        }
+      }
+
+      /* Responsive */
+
+      @media (max-width: 1024px) {
+        .grid.projects {
+          grid-template-columns: repeat(6, 1fr);
+        }
+        .card[style*="span 6"] {
+          grid-column: span 6 !important;
+        }
+        .card[style*="span 4"] {
+          grid-column: span 6 !important;
+        }
+      }
+
+      @media (max-width: 860px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .hero-cta {
+          justify-content: center;
+        }
+        .avatar {
+          margin: 0 auto;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .grid.projects {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .card {
+          grid-column: span 2 !important;
+        }
+        .menu-toggle {
+          display: block;
+        }
+
+        nav {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background: var(--card, #111);
+          display: none; /* hide on mobile until opened */
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          padding: 16px 0;
+          border-radius: 12px;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+          animation: slideDown 0.3s ease;
+        }
+        nav a,
+        nav .btn {
+          width: 90%;
+          text-align: center;
+        }
+
+        nav.active {
+          display: flex;
+        }
+
+        .contact-container {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .contact-section {
+          padding: 60px 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .grid.projects {
+          grid-template-columns: 1fr;
+        }
+        .card {
+          grid-column: 1 / -1 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          <span class="dot"></span>
+          <a href="#top">Mayur Sutreja</a>
+        </div>
+
+        <!-- Mobile menu toggle button -->
+        <button
+          id="menuToggle"
+          class="menu-toggle"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+
+        <nav id="navbar" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+          <button
+            id="themeToggle"
+            class="btn"
+            type="button"
+            aria-label="Toggle theme"
+          >
+            🌗 Theme
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <section class="hero" aria-labelledby="intro">
+        <div class="hero-grid">
+          <div>
+            <span class="badge">Laravel & PHP Developer</span>
+            <h1 id="intro" class="title">
+              <span id="typewriter"></span>
+            </h1>
+            <p class="subtitle">
+              I’m <strong>Mayur Sutreja</strong>, a Laravel developer focused on
+              building real-world products with solid engineering. Below you’ll
+              find a snapshot of my work and skills.
+            </p>
+            <div class="hero-cta">
+              <a
+                class="btn"
+                href="https://github.com/sutrejamayur"
+                target="_blank"
+                rel="noopener"
+                >💻 GitHub</a
+              >
+              <a class="btn" href="#projects">🚀 View Projects</a>
+              <a class="btn" href="#contact">✉️ Contact</a>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center">
+            <div class="avatar" aria-hidden="true">
+              <img src="./assets/mayur.jpg" class="port_img" alt="" />
+            </div>
           </div>
         </div>
-        <div style="display:flex; justify-content:center;">
-          <div class="avatar" aria-hidden="true">MS</div>
+      </section>
+
+      <section id="about" aria-labelledby="about-title">
+        <h2 id="about-title">About</h2>
+        <p>
+          I’m a <strong>Laravel</strong> developer with experience in building
+          CRUD apps, RESTful APIs, authentication, and integrations (e.g., mPDF,
+          Salla API). I care about code quality, performance, and maintainable
+          architecture.
+        </p>
+        <p class="muted">
+          Open to opportunities in <strong>Ahmedabad</strong> or remote.
+          Previously at <strong>Roblinx</strong> as a Junior Laravel Developer.
+        </p>
+      </section>
+
+      <section id="skills" aria-labelledby="skills-title">
+        <h2 id="skills-title">Skills</h2>
+        <div class="chips" role="list">
+          <span class="chip" role="listitem">PHP 8 / 7</span>
+          <span class="chip" role="listitem">Laravel</span>
+          <span class="chip" role="listitem">MySQL</span>
+          <span class="chip" role="listitem">REST APIs</span>
+          <span class="chip" role="listitem">Bootstrap</span>
+          <span class="chip" role="listitem">JavaScript (ES6)</span>
+          <span class="chip" role="listitem">AJAX</span>
+          <span class="chip" role="listitem">Blade</span>
+          <span class="chip" role="listitem">mPDF</span>
+          <span class="chip" role="listitem">Git & GitHub</span>
         </div>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-title">
+        <h2 id="projects-title">Selected Projects</h2>
+        <div class="grid projects">
+          <article class="card" style="grid-column: span 6">
+            <h3>Library Manager</h3>
+            <p class="muted">
+              Issue tracking, date filters, and charts (monthly/yearly). Export
+              PDFs with mPDF.
+            </p>
+            <div class="meta">
+              <a
+                class="btn"
+                target="_blank"
+                rel="noopener"
+                href="https://github.com/Msutreja"
+                >Code</a
+              >
+              <a class="btn" href="#">Live</a>
+            </div>
+          </article>
+          <article class="card" style="grid-column: span 6">
+            <h3>E‑commerce Admin (Demo)</h3>
+            <p class="muted">
+              Categories, products, color picker & gallery, discounts, and
+              payment management.
+            </p>
+            <div class="meta">
+              <a
+                class="btn"
+                target="_blank"
+                rel="noopener"
+                href="https://github.com/Msutreja"
+                >Code</a
+              >
+              <a class="btn" href="#">Live</a>
+            </div>
+          </article>
+          <article class="card" style="grid-column: span 4">
+            <h3>Quiz + Video App</h3>
+            <p class="muted">
+              Watch a video then answer related questions; results and scoring.
+            </p>
+            <div class="meta">
+              <a
+                class="btn"
+                target="_blank"
+                rel="noopener"
+                href="https://github.com/Msutreja"
+                >Code</a
+              >
+              <a class="btn" href="#">Live</a>
+            </div>
+          </article>
+          <article class="card" style="grid-column: span 4">
+            <h3>GitHub Pages Portfolio</h3>
+            <p class="muted">
+              This site. Clean, fast, single‑file starter with dark/light theme.
+            </p>
+            <div class="meta">
+              <a
+                class="btn"
+                target="_blank"
+                rel="noopener"
+                href="https://github.com/Msutreja/msutreja.github.io"
+                >Code</a
+              >
+              <a class="btn" href="#">Live</a>
+            </div>
+          </article>
+          <article class="card" style="grid-column: span 4">
+            <h3>API Integrations</h3>
+            <p class="muted">
+              Salla API integration for categories and products; OAuth2 flow;
+              image upload.
+            </p>
+            <div class="meta">
+              <a
+                class="btn"
+                target="_blank"
+                rel="noopener"
+                href="https://github.com/Msutreja"
+                >Code</a
+              >
+              <a class="btn" href="#">Live</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="contact"
+        aria-labelledby="contact-title"
+        class="contact-section"
+      >
+        <div class="contact-container">
+          <div class="contact-info">
+            <h2 id="contact-title">Contact</h2>
+            <p>
+              Say hello 👋:
+              <a class="accent" href="mailto:mayursutreja99@gmail.com">
+                mayursutreja45@gmail.com
+              </a>
+            </p>
+            <div class="phone_icon">
+              <img src="./assets/phone-call.png" class="" alt="dialer icon" /><a
+                href="tel:+91 6352752659"
+                class="phone_icon"
+                >+91 6352752659</a
+              >
+            </div>
+            <p class="muted">
+              Prefer LinkedIn?
+              <a
+                href="https://www.linkedin.com/in/mayur-sutreja-58b00b1a1/"
+                target="_blank"
+                class="accent"
+                >Connect here</a
+              >
+            </p>
+            <p class="muted">📍 Ahmedabad</p>
+          </div>
+
+          <form class="contact-form">
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Your Name" required />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Your Message..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer_top">
+        © <span id="year"></span> <strong>Mayur Sutreja</strong> · Crafted with
+        ❤️ using <strong>Laravel</strong>, <strong>PHP</strong>, and
+        <strong>JavaScript</strong> · Deployed with 🚀
+        <strong>GitHub Pages</strong>
       </div>
-    </section>
+      <a href="https://github.com/sutrejamayur" target="_blank">GitHub</a> ·
+      <a
+        href="https://www.linkedin.com/in/mayur-sutreja-58b00b1a1/"
+        target="_blank"
+        >LinkedIn</a
+      >
+    </footer>
 
-    <section id="about" aria-labelledby="about-title">
-      <h2 id="about-title">About</h2>
-      <p>I’m a <strong>Laravel</strong> developer with experience in building CRUD apps, RESTful APIs, authentication, and integrations (e.g., mPDF, Salla API). I care about code quality, performance, and maintainable architecture.</p>
-      <p class="muted">Open to opportunities in <strong>Ahmedabad</strong> or remote. Previously at <strong>Roblinx</strong> as a Junior Laravel Developer.</p>
-    </section>
+    <script type="text/JavaScript">
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
 
-    <section id="skills" aria-labelledby="skills-title">
-      <h2 id="skills-title">Skills</h2>
-      <div class="chips" role="list">
-        <span class="chip" role="listitem">PHP 8 / 7</span>
-        <span class="chip" role="listitem">Laravel</span>
-        <span class="chip" role="listitem">MySQL</span>
-        <span class="chip" role="listitem">REST APIs</span>
-        <span class="chip" role="listitem">Bootstrap</span>
-        <span class="chip" role="listitem">JavaScript (ES6)</span>
-        <span class="chip" role="listitem">AJAX</span>
-        <span class="chip" role="listitem">Blade</span>
-        <span class="chip" role="listitem">mPDF</span>
-        <span class="chip" role="listitem">Git & GitHub</span>
-      </div>
-    </section>
+      // Theme toggle with localStorage
+      const root = document.documentElement;
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light') root.classList.add('light');
 
-    <section id="projects" aria-labelledby="projects-title">
-      <h2 id="projects-title">Selected Projects</h2>
-      <div class="grid projects">
-        <article class="card" style="grid-column: span 6;">
-          <h3>Library Manager</h3>
-          <p class="muted">Issue tracking, date filters, and charts (monthly/yearly). Export PDFs with mPDF.</p>
-          <div class="meta">
-            <a class="btn" target="_blank" rel="noopener" href="https://github.com/Msutreja">Code</a>
-            <a class="btn" href="#">Live</a>
-          </div>
-        </article>
-        <article class="card" style="grid-column: span 6;">
-          <h3>E‑commerce Admin (Demo)</h3>
-          <p class="muted">Categories, products, color picker & gallery, discounts, and payment management.</p>
-          <div class="meta">
-            <a class="btn" target="_blank" rel="noopener" href="https://github.com/Msutreja">Code</a>
-            <a class="btn" href="#">Live</a>
-          </div>
-        </article>
-        <article class="card" style="grid-column: span 4;">
-          <h3>Quiz + Video App</h3>
-          <p class="muted">Watch a video then answer related questions; results and scoring.</p>
-          <div class="meta">
-            <a class="btn" target="_blank" rel="noopener" href="https://github.com/Msutreja">Code</a>
-            <a class="btn" href="#">Live</a>
-          </div>
-        </article>
-        <article class="card" style="grid-column: span 4;">
-          <h3>GitHub Pages Portfolio</h3>
-          <p class="muted">This site. Clean, fast, single‑file starter with dark/light theme.</p>
-          <div class="meta">
-            <a class="btn" target="_blank" rel="noopener" href="https://github.com/Msutreja/msutreja.github.io">Code</a>
-            <a class="btn" href="#">Live</a>
-          </div>
-        </article>
-        <article class="card" style="grid-column: span 4;">
-          <h3>API Integrations</h3>
-          <p class="muted">Salla API integration for categories and products; OAuth2 flow; image upload.</p>
-          <div class="meta">
-            <a class="btn" target="_blank" rel="noopener" href="https://github.com/Msutreja">Code</a>
-            <a class="btn" href="#">Live</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact" aria-labelledby="contact-title">
-      <h2 id="contact-title">Contact</h2>
-      <p>Say hello: <a class="accent" href="mailto:mayursutreja99@gmail.com">mayursutreja99@gmail.com</a></p>
-      <p class="muted">Prefer LinkedIn? Add your profile link here.</p>
-      <p class="muted">Rajkot → Ahmedabad (open to relocate)</p>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">© <span id="year"></span> Mayur Sutreja · Built with HTML/CSS · Hosted on GitHub Pages</div>
-  </footer>
-
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Theme toggle with localStorage
-    const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light') root.classList.add('light');
-
-    document.getElementById('themeToggle').addEventListener('click', () => {
-      root.classList.toggle('light');
-      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
-    });
-
-    // Smooth scroll for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      document.getElementById('themeToggle').addEventListener('click', () => {
+        root.classList.toggle('light');
+        localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
       });
-    });
-  </script>
-</body>
+
+      // Smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const id = a.getAttribute('href').slice(1);
+          const el = document.getElementById(id);
+          if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+      });
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navbar = document.getElementById('navbar');
+
+      menuToggle.addEventListener('click', () => {
+          navbar.classList.toggle('active');
+          menuToggle.textContent = navbar.classList.contains('active') ? '✖' : '☰';
+      });
+
+        // Close menu when any link or button inside nav is clicked
+      document.addEventListener('click', (e) => {
+          const isClickInsideMenu = navbar.contains(e.target) || menuToggle.contains(e.target);
+          if (!isClickInsideMenu && navbar.classList.contains('active')) {
+          navbar.classList.remove('active');
+          menuToggle.textContent = '☰';
+          }
+      });
+
+      const phrases = [
+          "build clean, reliable, and fast web apps.",
+          "craft high-performance Laravel applications.",
+          "turn ideas into functional web experiences.",
+          "create scalable backend solutions with PHP.",
+          "bring creativity and logic together in code."
+      ];
+
+      let i = 0;
+      let j = 0;
+      let currentPhrase = [];
+      let isDeleting = false;
+      const speed = 100;
+
+      function type() {
+          const typewriter = document.getElementById("typewriter");
+          typewriter.innerHTML = currentPhrase.join("");
+
+          if (i < phrases.length) {
+          if (!isDeleting && j <= phrases[i].length) {
+              currentPhrase.push(phrases[i][j]);
+              j++;
+          }
+
+          if (isDeleting && j <= phrases[i].length) {
+              currentPhrase.pop(phrases[i][j]);
+              j--;
+          }
+
+          if (j == phrases[i].length) {
+              isDeleting = true;
+              setTimeout(type, 1500); // pause before deleting
+              return;
+          }
+
+          if (isDeleting && j === 0) {
+              currentPhrase = [];
+              isDeleting = false;
+              i++;
+              if (i === phrases.length) i = 0;
+          }
+          }
+          setTimeout(type, isDeleting ? speed / 2 : speed);
+      }
+
+      type();
+    </script>
+  </body>
 </html>
